@@ -1,6 +1,6 @@
-const Aluno = require("../models/customer.model.js/index.js.js");
+const Customer = require("../models/customer.model.js");
 
-// Create and Save a new aluno
+// Create and Save a new Customer
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -9,54 +9,54 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a Aluno
-  const aluno = new Aluno({
+  // Create a Customer
+  const customer = new Customer({
     email: req.body.email,
     name: req.body.name,
     active: req.body.active
   });
 
-  // Save Aluno in the database
-  Aluno.create(aluno, (err, data) => {
+  // Save Customer in the database
+  Customer.create(customer, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Aluno."
+          err.message || "Some error occurred while creating the Customer."
       });
     else res.send(data);
   });
 };
 
-// Retrieve all Alunos from the database.
+// Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-  Aluno.getAll((err, data) => {
+  Customer.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving alunos."
+          err.message || "Some error occurred while retrieving customers."
       });
     else res.send(data);
   });
 };
 
-// Find a single aluno with a alunoId
+// Find a single Customer with a customerId
 exports.findOne = (req, res) => {
-  Aluno.findById(req.params.id, (err, data) => {
+  Customer.findById(req.params.customerId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found aluno with id ${req.params.id}.`
+          message: `Not found Customer with id ${req.params.customerId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving aluno with id " + req.params.id
+          message: "Error retrieving Customer with id " + req.params.customerId
         });
       }
     } else res.send(data);
   });
 };
 
-// Update a aluno identified by the alunoId in the request
+// Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
@@ -67,18 +67,18 @@ exports.update = (req, res) => {
 
   console.log(req.body);
 
-  aluno.updateById(
-    req.params.id,
-    new aluno(req.body),
+  Customer.updateById(
+    req.params.customerId,
+    new Customer(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found aluno with id ${req.params.id}.`
+            message: `Not found Customer with id ${req.params.customerId}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating aluno with id " + req.params.alunoId
+            message: "Error updating Customer with id " + req.params.customerId
           });
         }
       } else res.send(data);
@@ -86,31 +86,31 @@ exports.update = (req, res) => {
   );
 };
 
-// Delete a aluno with the specified alunoId in the request
+// Delete a Customer with the specified customerId in the request
 exports.delete = (req, res) => {
-  aluno.remove(req.params.id, (err, data) => {
+  Customer.remove(req.params.customerId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found aluno with id ${req.params.id}.`
+          message: `Not found Customer with id ${req.params.customerId}.`
         });
       } else {
         res.status(500).send({
-          message: "Could not delete aluno with id " + req.params.id
+          message: "Could not delete Customer with id " + req.params.customerId
         });
       }
-    } else res.send({ message: `aluno was deleted successfully!` });
+    } else res.send({ message: `Customer was deleted successfully!` });
   });
 };
 
-// Delete all alunos from the database.
+// Delete all Customers from the database.
 exports.deleteAll = (req, res) => {
-  Aluno.removeAll((err, data) => {
+  Customer.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all alunos."
+          err.message || "Some error occurred while removing all customers."
       });
-    else res.send({ message: `All alunos were deleted successfully!` });
+    else res.send({ message: `All Customers were deleted successfully!` });
   });
 };
