@@ -1,5 +1,5 @@
 module.exports = app => {
-  const alunos = require("../controllers/alunos.controller.js/index.js");
+  const alunos = require("../controllers/alunos.controller.js");
 
   // Create a new Customer
   app.post("/alunos", alunos.create);

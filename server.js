@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Bem vindo a api da survive." });
 });
 
-require("./app/routes/alunos.routes.js/index.js.js")(app);
+require("./app/routes/alunos.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
