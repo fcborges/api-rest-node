@@ -1,4 +1,4 @@
-const Aluno = require("../models/aluno.model.js/index.js");
+const Aluno = require("../models/customer.model.js/index.js.js");
 
 // Create and Save a new aluno
 exports.create = (req, res) => {
