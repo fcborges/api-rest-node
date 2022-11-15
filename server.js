@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Bem vindo(a) a api-survive." });
+  res.json({ message: "Bem vindo(a) a api-survive. A api de test" });
 });
 
 require("./app/routes/customer.routes.js")(app);
